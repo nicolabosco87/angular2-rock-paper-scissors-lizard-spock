@@ -1,0 +1,20 @@
+
+<div *ngIf="state.matchStatus === 1">
+  <button (click)="restartGame()" class="btn btn-primary btn-block">Restart Game</button>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-6">
+      You!
+      <div class="alert alert-success">{{ state.scoreA }}</div>
+    </div>
+    <div class="col-xs-6">
+      Enemy
+      <div class="alert alert-danger">{{ state.scoreB }}</div>
+    </div>
+  </div>
+
+</div>
+
+
+

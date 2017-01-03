@@ -1,0 +1,62 @@
+
+<div class="wrapper" *ngIf="state.matchStatus === 0" >
+
+  <button (click)="restartGame()" class="btn btn-primary btn-block">Start Game!</button>
+
+</div>
+
+<div class="wrapper" *ngIf="state.matchStatus === 1">
+
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      Computer: <span>{{ state.computerMove | moveLabelPipe }}</span>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div class="alert status" *ngIf="!state.result && !state.playerMove && !state.computerMove" >
+        <h2 class="text-center">Choose a move!</h2>
+      </div>
+
+      <div class="alert status" *ngIf="state.playerMove || state.computerMove" [ngClass]="getMessageStyle()" >
+        {{ state.playerMove | moveLabelPipe }} {{ state.resultAction }} {{ state.computerMove | moveLabelPipe }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      You: <span>{{ state.playerMove | moveLabelPipe }}</span>
+    </div>
+
+    <div class="col-xs-12 text-center">
+
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" (click)="doMove('ro')" >Rock</button>
+        <button type="button" class="btn btn-default" (click)="doMove('pa')" >Paper</button>
+        <button type="button" class="btn btn-default" (click)="doMove('sc')" >Scissors</button>
+        <button type="button" class="btn btn-default" (click)="doMove('sp')" >Spock</button>
+        <button type="button" class="btn btn-default" (click)="doMove('li')" >Lizard</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="wrapper" *ngIf="state.matchStatus === 2">
+
+  <div class="alert alert-success text-center" *ngIf="state.scoreA >= 10" >
+    <h2>You Win!</h2>
+  </div>
+
+  <div class="alert alert-danger text-center" *ngIf="state.scoreB >= 10" >
+    <h2>You Lose!</h2>
+  </div>
+
+  <button (click)="restartGame()" class="btn btn-primary btn-block">Restart Game!</button>
+
+</div>
