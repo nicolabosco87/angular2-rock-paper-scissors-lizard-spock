@@ -1,38 +1,43 @@
 import { RESTART_GAME, MATCH_STEP } from './actions';
 import { ActionReducer, Action } from '@ngrx/store';
-import { MOVES, MATCH_STATUS_WAIT, MATCH_STATUS_ON_GOING, MATCH_STATUS_FINISHED } from './game/game.component';
 import { checkWinner } from './game/rpssl.logic';
+import { Move } from './shared/models/move.model';
+import { AppState } from './shared/interfaces';
+import * as COSTANTS from './shared/costants';
 
-var initialState = {
-  matchStatus: MATCH_STATUS_WAIT,
+
+
+const initialState: AppState = {
+  matchStatus: COSTANTS.MATCH_STATUS_WAIT,
   scoreA: 0,
   scoreB: 0,
-  playerMove: false,
-  computerMove: false,
+  playerMove: new Move(''),
+  computerMove: new Move(''),
   result: null,
   resultAction: '',
   matchMoves: []
 }
 
 
-export const gameReducer : ActionReducer<any> = (state : any = initialState, action : Action = {type: '', payload: ''}) => {
+export const gameReducer : ActionReducer<AppState> = (state : AppState = initialState, action : Action = {type: '', payload: ''}) => {
   switch (action.type) {
     case RESTART_GAME:
       return Object.assign(state, {
-        matchStatus: MATCH_STATUS_ON_GOING,
+        matchStatus: COSTANTS.MATCH_STATUS_ON_GOING,
         scoreA: 0,
         scoreB: 0,
-        playerMove: false,
-        computerMove: false,
+        playerMove: new Move(''),
+        computerMove: new Move(''),
         result: null,
         resultAction: '',
         matchMoves: []
       });
 
+
     case MATCH_STEP:
         let newState = Object.assign(state, {
-          playerMove: action.payload.move,
-          computerMove: MOVES[Math.floor(MOVES.length * Math.random())]
+          playerMove: new Move(action.payload.move),
+          computerMove: new Move(action.payload.computerMove)
         });
         let matchResult = checkWinner(newState.playerMove, newState.computerMove);
 
@@ -46,7 +51,7 @@ export const gameReducer : ActionReducer<any> = (state : any = initialState, act
         newState.resultAction = matchResult.action;
 
         if (newState.scoreA >= 10 || newState.scoreB >= 10) {
-          newState.matchStatus = MATCH_STATUS_FINISHED;
+          newState.matchStatus = COSTANTS.MATCH_STATUS_FINISHED;
         }
 
       return newState;

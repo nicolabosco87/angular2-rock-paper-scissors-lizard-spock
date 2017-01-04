@@ -15,7 +15,7 @@ import { gameReducer } from './reducers';
 import { BoardComponent } from './game/board/board.component';
 
 //Pipes
-import { moveLabelPipe } from './game/pipes/game.pipe';
+import { moveLabelPipe } from './shared/pipes/game.pipe';
 
 
 @NgModule({

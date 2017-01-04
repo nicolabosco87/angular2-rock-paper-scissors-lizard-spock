@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../interfaces';
+import { AppState } from '../../shared/interfaces';
 import { MATCH_STEP, RESTART_GAME } from '../../actions';
+import * as COSTANTS from '../../shared/costants';
 
 @Component({
   selector: 'board',
@@ -17,7 +18,7 @@ export class BoardComponent implements OnInit {
   ngOnInit() { }
 
   doMove(move) {
-    this.store.dispatch({type: MATCH_STEP, payload: { move }});
+    this.store.dispatch({type: MATCH_STEP, payload: { move: move, computerMove: COSTANTS.MOVES[Math.floor(COSTANTS.MOVES.length * Math.random())] }});
   }
 
   getMessageStyle() {

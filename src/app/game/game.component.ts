@@ -1,37 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from '../interfaces';
+import { AppState } from '../shared/interfaces';
 import { Store } from '@ngrx/store';
+import { Move } from '../shared/models/move.model';
+import * as COSTANTS from '../shared/costants';
 
 
-export const MATCH_STATUS_WAIT = 0;
-export const MATCH_STATUS_ON_GOING = 1;
-export const MATCH_STATUS_FINISHED = 2;
-
-export const MOVE_ROCK = 'ro';
-export const MOVE_PAPER = 'pa';
-export const MOVE_SCISSORS = 'sc';
-export const MOVE_SPOCK = 'sp';
-export const MOVE_LIZARD = 'li';
-
-export const MOVES = [
-  MOVE_ROCK,
-  MOVE_PAPER,
-  MOVE_SCISSORS,
-  MOVE_SPOCK,
-  MOVE_LIZARD
-]
-
-export function moveLabel(move) {
-  switch (move) {
-    case MOVE_ROCK:
+export function moveLabel(move: Move) {
+  switch (move.code) {
+    case COSTANTS.MOVE_ROCK:
       return 'Rock';
-    case MOVE_PAPER:
+    case COSTANTS.MOVE_PAPER:
       return 'Paper';
-    case MOVE_SCISSORS:
+    case COSTANTS.MOVE_SCISSORS:
       return 'Scissors';
-    case MOVE_SPOCK:
+    case COSTANTS.MOVE_SPOCK:
       return 'Spock';
-    case MOVE_LIZARD:
+    case COSTANTS.MOVE_LIZARD:
       return 'Lizard';
     default:
       return '';

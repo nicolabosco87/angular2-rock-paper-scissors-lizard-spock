@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { moveLabel } from '../game.component';
+import { moveLabel } from '../../game/game.component';
+import { Move } from '../models/move.model';
 /*
  * Convert number in dozens
  * Takes a number argument that defaults to true.
@@ -10,7 +11,7 @@ import { moveLabel } from '../game.component';
  */
 @Pipe({name: 'moveLabelPipe'})
 export class moveLabelPipe implements PipeTransform {
-    transform(move: string): string {
+    transform(move: Move): string {
         return moveLabel(move);
     }
 }

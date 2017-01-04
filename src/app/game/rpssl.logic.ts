@@ -1,85 +1,85 @@
-import { MOVE_ROCK, MOVE_PAPER, MOVE_SCISSORS, MOVE_SPOCK, MOVE_LIZARD } from './game.component';
+import * as COSTANTS from '../shared/costants';
+import { Move } from '../shared/models/move.model';
 
+export function checkWinner(move1: Move, move2: Move) : any {
 
-export function checkWinner(move1: string, move2: string) : any {
+    switch (move1.code) {
 
-    switch (move1) {
-
-        case MOVE_ROCK:
-            switch (move2) {
-                case MOVE_ROCK:
+        case COSTANTS.MOVE_ROCK:
+            switch (move2.code) {
+                case COSTANTS.MOVE_ROCK:
                     return { result: 0, action: 'have no effect to' };
-                case MOVE_PAPER:
+                case COSTANTS.MOVE_PAPER:
                     return { result: -1, action: 'covered by' };
-                case MOVE_SCISSORS:
+                case COSTANTS.MOVE_SCISSORS:
                     return { result: 1, action: 'crushes' };
-                case MOVE_SPOCK:
+                case COSTANTS.MOVE_SPOCK:
                     return { result: -1, action: 'vaporized by' };
-                case MOVE_LIZARD:
+                case COSTANTS.MOVE_LIZARD:
                     return { result: 1, action: 'crushes' };
                 default:
                     return { result: 0, action: 'have no effect to' };
             }
 
-        case MOVE_PAPER:
-            switch (move2) {
-                case MOVE_ROCK:
+        case COSTANTS.MOVE_PAPER:
+            switch (move2.code) {
+                case COSTANTS.MOVE_ROCK:
                     return { result: 1, action: 'covers' };
-                case MOVE_PAPER:
+                case COSTANTS.MOVE_PAPER:
                     return { result: 0, action: 'have no effect to' };
-                case MOVE_SCISSORS:
+                case COSTANTS.MOVE_SCISSORS:
                     return { result: -1, action: 'cutted by' };
-                case MOVE_SPOCK:
+                case COSTANTS.MOVE_SPOCK:
                     return { result: 1, action: 'disprove' };
-                case MOVE_LIZARD:
+                case COSTANTS.MOVE_LIZARD:
                     return { result: -1, action: 'eated' };
                 default:
                     return { result: 0, action: 'have no effect to' };
             }
 
-        case MOVE_SCISSORS:
-            switch (move2) {
-                case MOVE_ROCK:
+        case COSTANTS.MOVE_SCISSORS:
+            switch (move2.code) {
+                case COSTANTS.MOVE_ROCK:
                     return { result: -1, action: 'crushed by' };
-                case MOVE_PAPER:
+                case COSTANTS.MOVE_PAPER:
                     return { result: 1, action: 'cut' };
-                case MOVE_SCISSORS:
+                case COSTANTS.MOVE_SCISSORS:
                     return { result: 0, action: 'have no effect to' };
-                case MOVE_SPOCK:
+                case COSTANTS.MOVE_SPOCK:
                     return { result: -1, action: 'smashed by' };
-                case MOVE_LIZARD:
+                case COSTANTS.MOVE_LIZARD:
                     return { result: 1, action: 'decapitates' };
                 default:
                     return { result: 0, action: 'have no effect to' };
             }
 
-        case MOVE_SPOCK:
-            switch (move2) {
-                case MOVE_ROCK:
+        case COSTANTS.MOVE_SPOCK:
+            switch (move2.code) {
+                case COSTANTS.MOVE_ROCK:
                     return { result: 1, action: 'vaporizes' };
-                case MOVE_PAPER:
+                case COSTANTS.MOVE_PAPER:
                     return { result: -1, action: 'disproved' };
-                case MOVE_SCISSORS:
+                case COSTANTS.MOVE_SCISSORS:
                     return { result: 1, action: 'smashes' };
-                case MOVE_SPOCK:
+                case COSTANTS.MOVE_SPOCK:
                     return { result: 0, action: 'have no effect to' };
-                case MOVE_LIZARD:
+                case COSTANTS.MOVE_LIZARD:
                     return { result: -1, action: 'poisoned by' };
                 default:
                     return { result: 0, action: 'have no effect to' };
             }
 
-        case MOVE_LIZARD:
-            switch (move2) {
-                case MOVE_ROCK:
+        case COSTANTS.MOVE_LIZARD:
+            switch (move2.code) {
+                case COSTANTS.MOVE_ROCK:
                     return { result: -1, action: 'crushed by' };
-                case MOVE_PAPER:
+                case COSTANTS.MOVE_PAPER:
                     return { result: 1, action: 'eat' };
-                case MOVE_SCISSORS:
+                case COSTANTS.MOVE_SCISSORS:
                     return { result: -1, action: 'decapitated by' };
-                case MOVE_SPOCK:
+                case COSTANTS.MOVE_SPOCK:
                     return { result: 1, action: 'poisons' };
-                case MOVE_LIZARD:
+                case COSTANTS.MOVE_LIZARD:
                     return { result: 0, action: 'have no effect to' };
                 default:
                     return { result: 0, action: 'have no effect to' };

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { RESTART_GAME } from '../../actions';
-import { AppState } from '../../interfaces';
+import { AppState } from '../../shared/interfaces';
 
 @Component({
   selector: 'scoreboard',
@@ -10,7 +10,7 @@ import { AppState } from '../../interfaces';
 })
 export class ScoreboardComponent implements OnInit {
 
-  @Input() state: any;
+  @Input() state: AppState;
 
   constructor(private store: Store<AppState>) { }
 
