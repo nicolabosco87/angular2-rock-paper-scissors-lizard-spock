@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Store, provideStore, StoreModule } from '@ngrx/store';
+import { routing } from './routing';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,6 +17,7 @@ import { BoardComponent } from './game/board/board.component';
 
 //Pipes
 import { moveLabelPipe } from './shared/pipes/game.pipe';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -26,12 +28,14 @@ import { moveLabelPipe } from './shared/pipes/game.pipe';
     GameComponent,
     ScoreboardComponent,
     BoardComponent,
-    moveLabelPipe
+    moveLabelPipe,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    routing,
     StoreModule.provideStore({ gameReducer })
   ],
   providers: [],
